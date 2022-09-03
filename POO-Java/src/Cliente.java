@@ -4,8 +4,7 @@ public class Cliente {
 	private String nome;
 	private String cpf;
 	private String endereco;
-	private Automovel veiculo;
-	private Orcamento orcamentoServico;
+	private Automovel[] veiculo;
 	private static int contCliente;
 
 	// Construtores
@@ -20,24 +19,15 @@ public class Cliente {
 		contCliente++;
 	}
 
-	public Cliente(String nome, String cpf, Automovel veiculo) {
-		setNome(nome);
-		setCpf(cpf);
-		////////////////////// Falta implementar a classe Automovel
-		contCliente++;
-	}
-
-	public Cliente(String nome, String cpf, String endereco, Automovel veiculo) {
+	public Cliente(String nome, String cpf, String endereco) {
 		setNome(nome);
 		setCpf(cpf);
 		setEndereco(endereco);
-		////////////////////// Falta implementar a classe Automovel	
 		contCliente++;
 	}
 
-	
-	// Métodos set
-	
+	// Metodos set
+
 	public void setNome(String nome) {
 		if (!nome.isEmpty()) {
 			this.nome = nome;
@@ -62,15 +52,16 @@ public class Cliente {
 		}
 	}
 
-	// Métodos get
+	// Metodos get
+
 	public String getNome() {
 		return this.nome;
 	}
-	
+
 	public String getCpf() {
 		return this.cpf;
 	}
-	
+
 	public String getEndereco() {
 		return this.endereco;
 	}
