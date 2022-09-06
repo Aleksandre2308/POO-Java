@@ -79,7 +79,7 @@ public class Endereco {
 	}
 	
 	/*
-	 * Ainda não sabemos se essa classe terá outra utilidade fora da classe Cliente 
+	 * Ainda nï¿½o sabemos se essa classe terï¿½ outra utilidade fora da classe Cliente 
 	*/
 	
 }
