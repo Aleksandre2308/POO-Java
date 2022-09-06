@@ -8,7 +8,7 @@ public class Servico {
 	private String nome;
 	private double preco;
 	private LocalDate dataInicialServico;
-	private String Status;
+	private String status;
 	
 	// Construtores
 	public Servico() {}
@@ -26,6 +26,35 @@ public class Servico {
 		setDataInicialServico(dataInicialServico);
 	}
 	
+	public void alterar(int idServico, String nome, double preco, LocalDate dataInicialServico) {
+		setIdServico(idServico);
+		setNome(nome);
+		setPreco(preco);
+		setDataInicialServico(dataInicialServico);
+	}
+	
+	public void excluir() {
+		
+	}
+	
+	public void pesquisarServico(Servico servico){
+		
+	}
+	
+	public void finalizarServico() {
+		status = "Serviço Finalizado";
+	}
+	
+	public void registrarPagamento(double quantia){
+		
+		if(quantia == preco) {
+			status = "Aprovado";
+		}else {
+			status = "Pendencia no pagamento";
+			preco = preco - quantia;
+		}
+		
+	}
 	
 	
 	// Metodos set
@@ -57,7 +86,7 @@ public class Servico {
 	
 	// Metodos get
 	
-	public int getIdentificador() {
+	public int getIdServico() {
 		
 		return idServico;		
 	}
@@ -76,5 +105,8 @@ public class Servico {
 		return dataInicialServico;
 	}
 	
-	
+	public String getStatus() {
+		
+		return status;
+	}
 }
