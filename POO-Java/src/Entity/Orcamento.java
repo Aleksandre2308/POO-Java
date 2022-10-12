@@ -27,17 +27,36 @@ public class Orcamento {
   // Retorna o valor total do orçamento
   public double getValorParaAutomovel(){
   
-    //this.calcularTotal();            //chama o método que calcula o total do orçamento, para não retornar um valor incorreto.
+    this.calcularTotal();   // Chama o método que calcula o total do orçamento, para não retornar um valor incorreto.
     
     return this.valorParaAutomovel;
   
   } // Fim do método getValorParaAutomovel
   
   
+  // Retorna a lista dos serviços presentes no orçamento
+  public ArrayList<Servico> getServicos(){
+    
+    return this.servicos;
+    
+  } // Fim do método getServicos
+  
+  
+  // Retorna a lista das peças presentes no orçamento
+  public ArrayList<Peca> getPecas(){
+    
+    return this.pecas;
+    
+  } // Fim do método getPecas
+  
+  
+  // OUTROS MÉTODOS ===============================================================================
+  
   // Esse método percorre as listas de Serviços e Peças, pegando o preço de cada item e somando tudo.
   // É private porque apenas o próprio objeto poderá realizar essa ação.
   private calcularTotal(){
     double soma = 0;
+    
     for (Servico s : servicos){
       soma = soma + s.getPreco();
     }
@@ -55,6 +74,7 @@ public class Orcamento {
   void adicionarServico(int identificador){
     //consulta os dados do servico pelo id
     
+    // FALTA IMPLEMENTAR   <<<<<<<< ????????????????????
     
     // Adiciona as informações no array
     this.servicos.add(identificador);
@@ -62,11 +82,11 @@ public class Orcamento {
   } // Fim do método adicionarServico
   
   
-  // Acrescenta um item na lista de serviços, é necessário fornecer o id. Funciona como se fosse setPeca().
-  //
+  // Acrescenta um item na lista de serviços, é necessário fornecer o id. Funciona como se fosse setPeca().  
   public void adicionarPeca(int identificador){
     //consulta os dados pelo id
     
+    // FALTA IMPLEMENTAR   <<<<<<<< ????????????????????
     
     //adiciona as informações no array
     this.pecas.add(identificador);
@@ -78,6 +98,11 @@ public class Orcamento {
 
 } //fim da classe Orçamento
 
+
+
+
+
+
 /*
 
 //Exemplo de uso dessa classe
@@ -88,6 +113,7 @@ orcamento.adicionarServico(6);
 orcamento.adicionarServico(3);
 orcamento.adicionarPeca(15);
 orcamento.adicionarPeca(34);
-orcamento.getValorParaAutomovel();
+
+System.out.println("Total = " + orcamento.getValorParaAutomovel() );
 
 */
