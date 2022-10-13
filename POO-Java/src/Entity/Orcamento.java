@@ -3,6 +3,10 @@ package Entity;
 // permite utilizar listas contendo vários objetos
 import java.util.ArrayList;
 
+// permite utilizar banco de dados nesta classe
+import java.sql.*;
+
+
 public class Orcamento {
   
   // VARIÁVEIS DE INSTÂNCIA ======================================================================
@@ -71,10 +75,34 @@ public class Orcamento {
   
   
   // Acrescenta um item na lista de serviços, é necessário fornecer o id. Funciona como se fosse setServico().
+  
   void adicionarServico(int identificador){
+
     //consulta os dados do servico pelo id
+    // tratamento de erros que venham a acontecer ao trabalhar com o BD
+    try{
+      
+      Connection conexao = BaseDAO.getConexao();
+      String comando = "SELECT * FROM servicos WHERE id = " + identificador;
+      PreparedStatement ps = conexao.prepareStatement(comando);
+      ResultSet rs = ps.executeQuery();
+      
+      // verifica se encontrou o serviço desejado
+      if rs.next(){
+        Servico s = new Servico(); // cria um objeto da classe Serviço com os dados trazidos do banco
+        
+        this.servicos.add(s); // acrescenta o serviço na lista de serviços do orçamento
+        
+      }else{                     // se não encontrou o serviço, exibe uma mensagem
+        System.out.println("Serviço não localizado");
+      }
+      
+        
+    }catch(Exception e){  // captura e exibe erros de execução
+      e.printStackTrace();
+    }
     
-    // FALTA IMPLEMENTAR   <<<<<<<< ????????????????????
+    
     
     // Adiciona as informações no array
     this.servicos.add(identificador);
