@@ -1,22 +1,22 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Conexao{
-	private static Connection con;
 	
-	static public Connection getConnection() {
-		if(con == null) {
-			try {
-				con = DriverManager.getConnection("jdbc:mysql://localhost/oficina","root","");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return con;
-		}
-		else return con;
-	}
+  // permite usar a variável sem criar um objeto
+  static Connection con;
 
-}
+  // permite chamar o método sem criar um objeto
+  static Connection getConexao(){
+  
+    // tratamento de erro
+    try {
+      con = DriverManager.getConnection("jdbc:mysql://localhost/oficina","root","");
+    }catch(SQLException e){
+      e.printStackTrace();
+    }
+
+    return con;
+	  
+  }//fim de getConexao
+
+}// fim da classe Conexao
