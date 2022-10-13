@@ -80,6 +80,7 @@ public class Orcamento {
 
     //consulta os dados do servico pelo id
     // tratamento de erros que venham a acontecer ao trabalhar com o BD
+    
     try{
       
       Connection conexao = BaseDAO.getConexao();
@@ -89,7 +90,11 @@ public class Orcamento {
       
       // verifica se encontrou o serviço desejado
       if rs.next(){
+        
         Servico s = new Servico(); // cria um objeto da classe Serviço com os dados trazidos do banco
+        s.setIdServico(rs.getInt("id"));
+        s.setNomeServico(rs.getString("nome"));
+        s.setPreco(rs.getDouble("preco"));
         
         this.servicos.add(s); // acrescenta o serviço na lista de serviços do orçamento
         
@@ -98,30 +103,56 @@ public class Orcamento {
       }
       
         
-    }catch(Exception e){  // captura e exibe erros de execução
+    }catch(SQLException e){  // captura e exibe erros de execução
       e.printStackTrace();
     }
     
-    
-    
-    // Adiciona as informações no array
-    this.servicos.add(identificador);
-  
   } // Fim do método adicionarServico
   
   
-  // Acrescenta um item na lista de serviços, é necessário fornecer o id. Funciona como se fosse setPeca().  
+  
+  
+  // Acrescenta um item na lista de peças, é necessário fornecer o id. Funciona como se fosse setPeca().  
+  
   public void adicionarPeca(int identificador){
     //consulta os dados pelo id
     
-    // FALTA IMPLEMENTAR   <<<<<<<< ????????????????????
+    // tratamento de erros que venham a acontecer ao trabalhar com o BD
     
-    //adiciona as informações no array
-    this.pecas.add(identificador);
+    try{
+      // estabelece a conexao com o bd
+      Connection conexao = Conexao.getConexao();
+      
+      // pesquisa SQL a ser executada
+      String comando = "SELECT * FROM pecas WHERE id = " + identificador;
+      
+      // cria o objeto que executa um comando sql
+      PreparedStatement ps = conexao.prepareStatement(comando);
+      
+      // armazena o resultado da pesquisa nessa variável
+      ResultSet rs = ps.executeQuery();
+      
+      // verifica se tem algo na variável
+      if (rs.next()){
+        
+        Peca p = new Peca(); // cria um objeto da classe Peça com os dados trazidos do banco
+        p.setIdPeca(rs.getString("id"));
+        p.setNome(rs.getString("nome"));
+        p.setPreco(rs.getDouble("preco"));
+        p.setFab(rs.getString("fabricante"));
+        
+        this.pecas.add(p); // acrescenta a peça na lista de peças do orçamento
+        
+      }else{                     // se não encontrou a peça, exibe uma mensagem de erro
+        System.out.println("Serviço não localizado");
+      }
+      
+        
+    }catch(SQLException e){  // captura e exibe erros de execução
+      e.printStackTrace();
+    }
   
   } // fim do método adicionarPeca
-  
-  
   
 
 } //fim da classe Orçamento
